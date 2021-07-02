@@ -22,7 +22,7 @@ registerBlockType('plugin/phone-link', {
         <p style={{fontSize: ".75em"}}>
           Enter the phone number below as a 10 digit number with no other
           characters or spaces (e.g. 7778675309).<br/>
-          Select how you want to display the number type (e.g. Mobile: (777)...)<br/>
+          Select how you want to display the number type (e.g. Mobile: (777)...). You can choose Fax as an option.<br/>
           If you select none, only the number link will display.
         </p>
         <select
@@ -36,6 +36,7 @@ registerBlockType('plugin/phone-link', {
           <option value="Telephone:">Telephone:</option>
           <option value="Tel:">Tel:</option>
           <option value="Phone:">Phone:</option>
+          <option value="Fax:">Fax:</option>
         </select>
         <input
           type="text"
@@ -60,7 +61,7 @@ registerBlockType('plugin/phone-link', {
           <span className="phone-link-message">{props.attributes.telMessage} </span>
         )}
         {formattedNumber ? (
-          <span itemprop="telephone">
+          <span itemprop={props.attributes.telMessage === "Fax:"?"fax":"telephone"}>
             <a
               className="phone-link"
               href={`tel:+1${props.attributes.telNumber}`}
